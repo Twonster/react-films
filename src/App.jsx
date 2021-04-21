@@ -1,26 +1,35 @@
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
+
 import Header from "./modules/header/Header";
 import Routes from "./routes/Routes";
+import store from "./redux/store/store";
 
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 `
 
-const ContentWrapper = styled.div``
+const ContentWrapper = styled.div`
+  height: calc(100% - 70px);
+`
 
 function App() {
   return (
     <BrowserRouter>
-      <MainContainer>
-        <Header></Header>
-        <ContentWrapper>
-          <Routes>
-            
-          </Routes>
-        </ContentWrapper>
-      </MainContainer>
+      <Provider store={store}>
+        <MainContainer>
+          <Header></Header>
+          <ContentWrapper>
+            <Routes>
+              
+            </Routes>
+          </ContentWrapper>
+        </MainContainer>
+      </Provider>
     </BrowserRouter>
   )
 }

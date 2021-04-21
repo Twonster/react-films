@@ -121,4 +121,3 @@ export const LOGO_SIZES = {
     w500: 'http://image.tmdb.org/t/p/w500',
     original: 'http://image.tmdb.org/t/p/original',
 }
-

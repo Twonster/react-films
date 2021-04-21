@@ -24,8 +24,8 @@ const StyledNavLink = styled(NavLink)`
     justify-content: center;
 
     &::after {
-        transition: .3s;
         content: '';
+        transition: .3s;
         width: 0;
         height: 3px;
         position: absolute;

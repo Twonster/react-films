@@ -7,7 +7,6 @@ const SInput = styled.input`
     outline: none;
     padding: 10px;
     width: 200px;
-    border-radius: 5px;
 ` 
 
 const HeaderInput = (props) => {
