@@ -121,3 +121,9 @@ export const LOGO_SIZES = {
     w500: 'http://image.tmdb.org/t/p/w500',
     original: 'http://image.tmdb.org/t/p/original',
 }
+export const PROFILE_SIZES = {
+     w45: 'http://image.tmdb.org/t/p/w45',
+     w185: 'http://image.tmdb.org/t/p/w185',
+     h632: 'http://image.tmdb.org/t/p/h632',
+     original: 'http://image.tmdb.org/t/p/original',
+}

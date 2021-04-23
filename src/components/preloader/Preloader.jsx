@@ -1,9 +1,10 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+import { showing } from '../../animations'
 
 
 const rotate = keyframes`
-    from { transform: rotate(0deg) }
+    from { transform: rotate(0deg);  }
     to { transform: rotate(360deg) }
 `
 const Container = styled.div`
@@ -21,7 +22,7 @@ const Wrapper = styled.svg`
     top: -30px;   
     cursor: pointer;
     transform: scale(${props => props.scale ? props.scale : 1});
-    animation: ${rotate} 1s linear infinite;
+    animation: ${rotate} .8s linear infinite, ${showing} 1s linear;
 
     &:hover .outline {
         stroke-width: 10px;

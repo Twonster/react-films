@@ -24,7 +24,7 @@ const Text = styled.span`
 `
 
 const TittleDescription = () => {
-    const { movie } = useSelector(({ filmReducer: { data } }) => data)
+    const { movie } = useSelector(({ filmDataReducer: { data } }) => data)
     const time = () => {
        const [hours, minutes] = (movie?.runtime / 60).toFixed(2).split('.')
        return `${hours}h ${minutes}m`

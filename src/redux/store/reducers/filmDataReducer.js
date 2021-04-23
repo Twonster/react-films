@@ -6,11 +6,11 @@ const initialState = {
     error: false
 }
 
-export default function filmReducer(state = initialState, action) {
-    const { SET_DATA, SET_LOADING, SET_ERROR } = requestTypes
+export default function filmDataReducer(state = initialState, action) {
+    const { SET_FILM_DATA, SET_FILM_LOADING, SET_FILM_ERROR, CLEAR_FILM_DATA } = requestTypes
 
     switch (action.type) {
-        case SET_DATA:
+        case SET_FILM_DATA:
             return {
                 ...state,
                 data: {
@@ -18,12 +18,17 @@ export default function filmReducer(state = initialState, action) {
                     [action.query]: action.payload
                 }
             };
-        case SET_LOADING:
+        case CLEAR_FILM_DATA:
+            return {
+                ...state,
+                data: action.payload
+            };
+        case SET_FILM_LOADING:
             return {
                 ...state,
                 loading: action.loading
             };
-        case SET_ERROR:
+        case SET_FILM_ERROR:
             return {
                 ...state,
                 error: action.error
