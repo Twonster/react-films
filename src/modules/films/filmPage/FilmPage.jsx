@@ -4,8 +4,7 @@ import styled from 'styled-components'
 
 import { API_KEY } from '../../../constants/APIConfig'
 
-import { setFilmDataClear } from '../../../redux/store/actions/filmActions/mainFilmDataAction'
-import { allFilmDataRequest } from '../../../redux/store/actions/thuncActions'
+import { setFilmDataClear } from '../../../redux/store/actions/filmActions/mainFilmDataActions'
 import FilmContent from './contant/FilmContent'
 
 import PosterSection from './poster/PosterSection'
@@ -19,17 +18,18 @@ const Wrapper = styled.div`
 `
 const FilmPage = (props) => {
     const dispatcher = useDispatch()
-    const callApi = async () => {
-        const requests = {
-            movie: `https://api.themoviedb.org/3/movie/${props.match.params.id}?api_key=${API_KEY}`,
-            cast: `https://api.themoviedb.org/3/movie/${props.match.params.id}/credits?api_key=${API_KEY}`
-        }
-        await dispatcher(allFilmDataRequest(requests.movie, 'movie'))
-        await dispatcher(allFilmDataRequest(requests.cast, 'people'))
-    }
 
     useEffect(() => {
-        callApi()
+        dispatcher({
+            type: 'GET_FILM_FULLDATA',
+            url: `https://api.themoviedb.org/3/movie/${props.match.params.id}?api_key=${API_KEY}`,
+            pointer: 'movie',
+        })
+        dispatcher({
+            type: 'GET_FILM_FULLDATA',
+            url: `https://api.themoviedb.org/3/movie/${props.match.params.id}/credits?api_key=${API_KEY}`,
+            pointer: 'peoples',
+        })
         return () => {
             dispatcher(setFilmDataClear({}))
         }

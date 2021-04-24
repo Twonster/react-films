@@ -1,0 +1,1 @@
+export const callApi = async (url) => await (await fetch(url)).json()

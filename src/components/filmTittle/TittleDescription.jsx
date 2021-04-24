@@ -24,16 +24,16 @@ const Text = styled.span`
 `
 
 const TittleDescription = () => {
-    const { movie } = useSelector(({ filmDataReducer: { data } }) => data)
+    const { movie } = useSelector(({ filmDataReducer: { response } }) => response)
     const time = () => {
-       const [hours, minutes] = (movie?.runtime / 60).toFixed(2).split('.')
+       const [hours, minutes] = (movie.data?.runtime / 60).toFixed(2).split('.')
        return `${hours}h ${minutes}m`
     }
-    const genresList = () => (movie) ? movie.genres.map(item => <GenreList key={item.id} to={`/${item.id}`}>{item.name}</GenreList>) : '...loading'
+    const genresList = () => (movie.data.genres) ? movie.data.genres.map(item => <GenreList key={item.id} to={`/${item.id}`}>{item.name}</GenreList>) : '...loading'
 
     return (
         <Wrapper>
-            <Text>{movie?.release_date}</Text>
+            <Text>{movie.data?.release_date}</Text>
             <div>{genresList()}</div>
             <Text>{time()}</Text>
         </Wrapper>

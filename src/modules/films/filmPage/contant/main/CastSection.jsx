@@ -16,11 +16,11 @@ const Cast = styled.h2`
 `
 
 const CastSection = (props) => {
-    const { data: { people }, loading } = useSelector(({ filmDataReducer }) => filmDataReducer )
+    const { peoples } = useSelector(({ filmDataReducer: { response } }) => response)
 
     const castList = () => {
-       return (people && people.cast.length) 
-       ? people.cast.slice(0, 10).map(item => <HumanCard key={item.id} {...item} />)
+       return (peoples.data.cast) 
+       ? peoples.data.cast.slice(0, 10).map(item => <HumanCard key={item.id} {...item} />)
        : <Preloader /> 
     }  
 

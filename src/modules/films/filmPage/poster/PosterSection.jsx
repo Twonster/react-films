@@ -13,6 +13,7 @@ import { BACKDROP_SIZES, POSTER_SIZE } from '../../../../constants/APIConfig'
 import { showing } from '../../../../animations'
 
 const Section = styled.div`
+    display: flex;
     background-image: url(${props => props.closed ? '#fff' : props.bckgrnd});
     background-position: center;
     background-size: cover;
@@ -22,8 +23,11 @@ const Section = styled.div`
 const Blur = styled.div`
     width: 100%;
     height: 100%;
+    min-height: 600px;
     background-color: rgba(0, 0, 9, 0.7);
     backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
 
 `
 const PosterContent = styled.div`
@@ -47,23 +51,24 @@ const PosterContent = styled.div`
 `
 
 const PosterSection = (props) => {
-    const { data: { movie }, loading } = useSelector(({ filmDataReducer }) => filmDataReducer )
+    const { movie } = useSelector(({ filmDataReducer: { response } }) => response)
     const [closed, isClosed] = useState(false)
     useEffect(() => {
         return () => isClosed(true)
     }, [])
-    return ( 
-        <Section loading={loading} closed={closed} bckgrnd={`${BACKDROP_SIZES.w1280}${movie?.backdrop_path}`}>
+
+    return (
+        <Section loading={movie.loading} closed={closed} bckgrnd={`${BACKDROP_SIZES.w1280}${movie.data?.backdrop_path}`}>
             <Blur>
-                {loading 
+                {movie.loading
                 ? <Preloader />
                 : <PosterContent>
-                    <img className="poster" src={POSTER_SIZE.w342 + movie?.poster_path} alt="" />
+                    <img className="poster" src={POSTER_SIZE.w342 + movie.data?.poster_path} alt="" />
                     <div className="description-wrapper">
-                        <FilmTittle name={movie?.original_title} year={movie?.release_date} color="#fff" />
+                        <FilmTittle name={movie.data?.original_title} year={movie.data?.release_date} color="#fff" />
                         <TittleDescription />
-                        <ActionSection votes={movie?.vote_average} />
-                        <FilmDescription overview={movie?.overview} tagline={movie?.tagline} />
+                        <ActionSection votes={movie.data?.vote_average} />
+                        <FilmDescription overview={movie.data?.overview} tagline={movie.data?.tagline} />
                         <CrewSection />
                     </div>
                 </PosterContent>}

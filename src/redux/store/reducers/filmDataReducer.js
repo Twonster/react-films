@@ -1,9 +1,18 @@
 import { requestTypes } from '../actions/actionTypes'
 
 const initialState = {
-    data: {},
-    loading: false,
-    error: false
+    response: {
+        movie: {
+            data: {},
+            loading: false,
+            error: false        
+        },
+        peoples: {
+            data: {},
+            loading: false,
+            error: false        
+        }
+    },
 }
 
 export default function filmDataReducer(state = initialState, action) {
@@ -12,26 +21,37 @@ export default function filmDataReducer(state = initialState, action) {
     switch (action.type) {
         case SET_FILM_DATA:
             return {
-                ...state,
-                data: {
-                    ...state.data,
-                    [action.query]: action.payload
+                response: {
+                    ...state.response,
+                    [action.pointer]: {
+                        ...state.response[action.pointer],
+                        data: action.payload
+                    }
                 }
             };
         case CLEAR_FILM_DATA:
             return {
-                ...state,
-                data: action.payload
+                response: initialState.response,
             };
         case SET_FILM_LOADING:
             return {
-                ...state,
-                loading: action.loading
+                response: {
+                    ...state.response,
+                    [action.pointer]: {
+                        ...state.response[action.pointer],
+                        loading: action.loading
+                    }
+                }
             };
         case SET_FILM_ERROR:
             return {
-                ...state,
-                error: action.error
+                response: {
+                    ...state.response,
+                    [action.pointer]: {
+                        ...state.response[action.pointer],
+                        error: action.error
+                    }
+                }
             };
             default: return state
     }   
