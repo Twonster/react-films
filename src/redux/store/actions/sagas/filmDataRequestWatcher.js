@@ -6,10 +6,9 @@ import {
     setFilmDataLoading,
     setFilmDataError,
 } from '../filmActions/mainFilmDataActions'
-const pause = new Promise((res, rej) => setTimeout(res, 5000))
+
 //worker
 function* filmDataRequestWorker({ url, pointer }) {
-    console.log(url, pointer)
     yield put(setFilmDataLoading(true, pointer))
     try {
         const resp = yield call(() => callApi(url))
@@ -17,7 +16,6 @@ function* filmDataRequestWorker({ url, pointer }) {
     } catch (error) {
         yield put(setFilmDataError(error, pointer))
     } finally {
-        // pause()
         yield put(setFilmDataLoading(false, pointer))
     }
 }

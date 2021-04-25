@@ -4,7 +4,7 @@ import ContentContainer from './main/ContentContainer'
 import FilmSidebar from './sidebar/FilmSidebar'
 
 const Wrapper = styled.div`
-    width: 1200px;
+    max-width: 1200px;
     display: flex;
     margin: 0 auto;
 `

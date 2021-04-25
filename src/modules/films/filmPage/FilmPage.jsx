@@ -30,6 +30,21 @@ const FilmPage = (props) => {
             url: `https://api.themoviedb.org/3/movie/${props.match.params.id}/credits?api_key=${API_KEY}`,
             pointer: 'peoples',
         })
+        dispatcher({
+            type: 'GET_FILM_FULLDATA',
+            url: `https://api.themoviedb.org/3/movie/${props.match.params.id}/external_ids?api_key=${API_KEY}`,
+            pointer: 'external_ids',
+        })
+        dispatcher({
+            type: 'GET_FILM_FULLDATA',
+            url: `https://api.themoviedb.org/3/movie/${props.match.params.id}/keywords?api_key=${API_KEY}`,
+            pointer: 'keywords',
+        })
+        dispatcher({
+            type: 'GET_FILM_FULLDATA',
+            url: `https://api.themoviedb.org/3/movie/${props.match.params.id}/reviews?api_key=${API_KEY}`,
+            pointer: 'reviews',
+        })
         return () => {
             dispatcher(setFilmDataClear({}))
         }

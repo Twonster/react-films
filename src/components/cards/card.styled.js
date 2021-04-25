@@ -41,7 +41,9 @@ export const Tittle = styled(NavLink)`
     margin: 10px 0 0 0;
     font-weight: 700;
     text-decoration: none;
-
+    display: flex;
+    align-items: center;
+    
     &:hover {
         color: #50a3ff;
     }

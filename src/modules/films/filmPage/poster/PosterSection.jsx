@@ -19,6 +19,7 @@ const Section = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 600px;
+    margin: 0 0 20px 0;
 `
 const Blur = styled.div`
     width: 100%;
@@ -52,6 +53,7 @@ const PosterContent = styled.div`
 
 const PosterSection = (props) => {
     const { movie } = useSelector(({ filmDataReducer: { response } }) => response)
+    
     const [closed, isClosed] = useState(false)
     useEffect(() => {
         return () => isClosed(true)

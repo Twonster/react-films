@@ -11,7 +11,22 @@ const initialState = {
             data: {},
             loading: false,
             error: false        
-        }
+        },
+        external_ids: {
+            data: {},
+            loading: false,
+            error: false        
+        },
+        keywords: {
+            data: {},
+            loading: false,
+            error: false        
+        },
+        reviews: {
+            data: {},
+            loading: false,
+            error: false        
+        },
     },
 }
 

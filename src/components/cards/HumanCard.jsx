@@ -6,7 +6,7 @@ import { Wrapper, Card, Image, Description, Tittle, SecondHeading } from './card
 import notFound from '../../images/avatarNotFound.png'
 
 const NewWrapper = styled(Wrapper)`
-    width: 20%;
+    width: 200px;
 `
 const NewDesctiption = styled(Description)`
     display: flex;
@@ -17,11 +17,11 @@ const NotFoundImage = styled.div`
     background-image: url(${props => props.img});
     background-size: cover;
     width: 100%;
-    height: 250px;
+    height: 285px;
+    opacity: 0.2;
 `
 const NewImage = styled(Image)`
     width: 100%;
-    height: 250px;
 `
 
 const HumanCard = (props) => {
