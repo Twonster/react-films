@@ -2,11 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import HeaderButton from '../../components/button/HeaderButton'
-import HeaderInput from '../../components/input/HeaderInput'
 import Link from '../../components/link/Link'
-
 import logo from  '../../images/logo.svg'
+
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -43,12 +41,6 @@ const Container = styled.div`
 `
 
 const LinksWrapper = styled.div``
-const InputWrapper = styled.div`
-    overflow: hidden;
-    background-color: #fff;
-    border-radius: 30px;
-    height: 40px;
-`
 
 const Header = (porps) => {
     return (
@@ -66,10 +58,6 @@ const Header = (porps) => {
                         <Link text="films" href="/films"/>
                         <Link text="home" href="/home"/>
                     </LinksWrapper>
-                    {/* <InputWrapper>
-                        <HeaderInput />
-                        <HeaderButton />
-                    </InputWrapper> */}
                 </div>
             </Container>
         </Wrapper>

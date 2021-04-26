@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { showing } from '../../../../../animations'
 import FilmDetails from './filmDetails/FilmDetails'
 import KeywordsSection from './keywords/KeywordsSection'
 import SocialLinks from './socoalLinks/SocialLinks'
@@ -10,6 +11,7 @@ const Wrapper = styled.div`
     min-width: 180px;
     display: flex;
     flex-direction: column;
+    animation: ${showing} 1s linear;
 `
 
 const FilmSidebar = () => {
