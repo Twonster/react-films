@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import styled from "styled-components";
 
 import Header from "./modules/header/Header";
@@ -22,11 +22,9 @@ function App() {
     <BrowserRouter>
       <Provider store={store}>
         <MainContainer>
-          <Header></Header>
           <ContentWrapper>
-            <Routes>
-              
-            </Routes>
+          <Route path="/" render={(props) => <Header {...props} />} />
+            <Routes />
           </ContentWrapper>
         </MainContainer>
       </Provider>

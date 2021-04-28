@@ -1,4 +1,4 @@
-import { requestTypes } from '../actions/actionTypes'
+import { FILM_DATA_ACTION_TYPES } from '../actions/actionTypes'
 
 const initialState = {
     response: {
@@ -31,7 +31,7 @@ const initialState = {
 }
 
 export default function filmDataReducer(state = initialState, action) {
-    const { SET_FILM_DATA, SET_FILM_LOADING, SET_FILM_ERROR, CLEAR_FILM_DATA } = requestTypes
+    const { SET_FILM_DATA, SET_FILM_LOADING, SET_FILM_ERROR, CLEAR_FILM_DATA } = FILM_DATA_ACTION_TYPES
 
     switch (action.type) {
         case SET_FILM_DATA:
@@ -68,6 +68,6 @@ export default function filmDataReducer(state = initialState, action) {
                     }
                 }
             };
-            default: return state
+        default: return state
     }   
 }

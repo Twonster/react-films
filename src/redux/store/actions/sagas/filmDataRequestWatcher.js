@@ -1,5 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 
+import { GET_FILM_FULLDATA } from '../sagaActionTypes'
 import { callApi } from '../../api'
 import { 
     setFilmDataSuccess, 
@@ -22,5 +23,5 @@ function* filmDataRequestWorker({ url, pointer }) {
 
 //watcher
 export function* filmDataRequestWatcher() {
-    yield takeEvery('GET_FILM_FULLDATA', filmDataRequestWorker)
+    yield takeEvery(GET_FILM_FULLDATA, filmDataRequestWorker)
 }

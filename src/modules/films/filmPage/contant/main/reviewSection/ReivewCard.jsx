@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { showing } from '../../../../../../animations'
 
 import Avatar from '../../../../../../components/avatars/Avatar'
 import { PROFILE_SIZES } from '../../../../../../constants/APIConfig'
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
     padding: 20px 0;
     border-radius: 8px;
     width: 100%;
+    animation: ${showing} .3s linear;
 
     & .avatar-setion {
         margin: 0 20px 0 0;
@@ -19,11 +21,16 @@ const Wrapper = styled.div`
 
     & .user-data {
         display: flex;
+        margin: 0 0 20px 0;
         
         & .text {
             display: flex;
             flex-direction: column;
-
+            
+            & .post-time {
+                font-size: 14px;
+                opacity: .8;
+            }
             & .user-name {
                 font-size: 18px;
                 font-weight: 700;

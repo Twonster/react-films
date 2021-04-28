@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import FilmCard from '../../components/cards/FilmCard'
 import Preloader from '../../components/preloader/Preloader'
@@ -24,29 +25,30 @@ const FilmsSection = styled.div`
 `
 
 const Films = (props) => {
-    const [data, setData] = useState([])
-    const [delay, setDelay] = useState(true)
-    const searchWord = 'war'
+    // const [data, setData] = useState([])
+    // const [delay, setDelay] = useState(true)
+    // const searchWord = 'war'
+    const { data, error, loading, initialValue } = useSelector(({ searchDataReducer: { response } }) => response)
     // const pause = async () => new Promise((res, rej) => setTimeout(res, 3000))
 
-    const callApi = async () => {
-        const resp = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchWord}&page=1`)
-        const respData = await resp.json()
-        setData(respData.results)
-        // await pause()
-        setDelay(false)
-    }
+    // const callApi = async () => {
+    //     const resp = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchWord}&page=1`)
+    //     const respData = await resp.json()
+    //     setData(respData.results)
+    //     // await pause()
+    //     setDelay(false)
+    // }
 
     const spawn = () => data.map(item => <FilmCard key={item.id} {...item} /> )
 
-    useEffect(() => {
-        callApi()
-    }, [])
+    // useEffect(() => {
+    //     callApi()
+    // }, [])
     
     return (
         <Wrapper>
             <FiltersSection>фильтры</FiltersSection>
-            {delay ? <Preloader /> : <FilmsSection>{spawn()}</FilmsSection>}
+            {loading ? <Preloader /> : <FilmsSection>{spawn()}</FilmsSection>}
         </Wrapper>
     )
 }

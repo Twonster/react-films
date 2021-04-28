@@ -38,8 +38,8 @@ const FilmDetails = (props) => {
         <Wrapper>
             {movie.data.status && <Detail tittle="Status" description={movie.data.status} />}
             {movie.data.original_language && <Detail tittle="Original Language" description={movie.data.original_language.toUpperCase()} />}
-            {movie.data.budget != 0 && <Detail tittle="Budget" description={`$ ${movie.data.budget}`} />}
-            {movie.data.revenue != 0 && <Detail tittle="Revenue" description={`$ ${movie.data.revenue}`} />}
+            {movie.data.budget !== 0 && <Detail tittle="Budget" description={`$ ${movie.data.budget}`} />}
+            {movie.data.revenue !== 0 && <Detail tittle="Revenue" description={`$ ${movie.data.revenue}`} />}
         </Wrapper>
     )
 }

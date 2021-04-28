@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { setSearchShowingStatus } from '../../redux/store/actions/searchActions/searchActions'
+
 import Link from '../../components/link/Link'
+import SearchLoupeButton from '../../components/search/SearchLoupeButton'
 import logo from  '../../images/logo.svg'
+import SearchSection from '../search/SearchSection'
+
 
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(9deg, #90cea1, #50a3ff);
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1890ff;
     box-shadow: 0 0 20px 0 #00000094;
     width: 100%;
+    position: relative;
+    z-index: 10;
     
     & .logo-wrapper {
         display: flex;
@@ -38,29 +48,46 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 1200px;
+    margin: 0 auto;
+`
+const LinksWrapper = styled.div`
+    display: flex;
+    align-items: center;
 `
 
-const LinksWrapper = styled.div``
+const Header = ({ history }) => {
+    const dispatcher = useDispatch()
+    const { isOpened } = useSelector(({ searchDataReducer: { response } }) => response)
 
-const Header = (porps) => {
+    // const  [cearchVisible, setShowVisible] = useState(false)
+    const searchHandler = () => {
+        dispatcher(setSearchShowingStatus(!isOpened))
+    }
+
     return (
-        <Wrapper>
-            <Container>
+        <>
+            <Wrapper>
+                <Container>
+                    <NavLink to="/" className="logo-wrapper">
+                        <img className="logo" src={logo} alt=""/>
+                        DVABOBA   
+                    </NavLink>
 
-                <NavLink to="/" className="logo-wrapper">
-                    <img className="logo" src={logo} alt=""/>
-                    DVABOBA   
-                </NavLink>
-
-                <div className="right-side">
-                    <LinksWrapper>
-                        <Link text="favorites" href="/favorites"/>
-                        <Link text="films" href="/films"/>
-                        <Link text="home" href="/home"/>
-                    </LinksWrapper>
-                </div>
-            </Container>
-        </Wrapper>
+                    <div className="right-side">
+                        <LinksWrapper>
+                            <Link text="favorites" href="/favorites"/>
+                            <Link text="films" href="/films"/>
+                            <Link text="home" href="/home"/>
+                            <SearchLoupeButton 
+                                type={isOpened}
+                                action={searchHandler}
+                            />
+                        </LinksWrapper>
+                    </div>
+                </Container>
+            </Wrapper>
+            {isOpened && <SearchSection hiding={searchHandler} history={history} />}
+        </>
     )
 }
 
