@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import loupe from '../../images/icons/magnifying-glass-ico.svg'
@@ -31,11 +30,13 @@ const Text = styled.p`
 `
 const ListItem = ({ id, filmName, history, hiding }) => {
     return (
-        <Wrapper onClick={() => {
-            hiding()
-            history.push(`/films/film-id/${id}`)
-
-        }}>
+        <Wrapper 
+            onClick={
+                () => {
+                hiding()
+                history.push(`/films/film-id/${id}`)
+            }
+        }>
             <Container>
                 <Text>{filmName}</Text>
             </Container>

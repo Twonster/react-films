@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { setSearchShowingStatus } from '../../redux/store/actions/searchActions/searchActions'
+import { setSearchShowingStatus } from '../../redux/actions/searchActions/searchActions'
 
 import Link from '../../components/link/Link'
 import SearchLoupeButton from '../../components/search/SearchLoupeButton'

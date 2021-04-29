@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { LoadingOutlined } from '@ant-design/icons';
 
 import loupe from '../../images/icons/magnifying-glass-ico.svg'
+import useDebounce from '../customHooks/useDebounce';
 
 const Wrapper = styled.div`
     background-color: #fff;
@@ -30,11 +31,23 @@ const Input = styled.input`
 `
 
 const SearchInput = (props) => {
-    console.log(props)
+    const [searchTerm, setSearchTerm] = useState('')
+
+    const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+    useEffect( () => {
+          if (debouncedSearchTerm) {
+            const callApi = async ()  => {
+               await props.action(debouncedSearchTerm)
+            }
+            callApi()
+          }
+    }, [debouncedSearchTerm])
+
     return (
         <Wrapper>
             <Container>
-                <Input value={props.initialValue} onChange={props.action} onKeyDown />
+                <Input value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} />
                 <div>
                     {props.status && <LoadingOutlined color="#c4c4c4" style={{ fontSize: 20 }} spin />}
                 </div>

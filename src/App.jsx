@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Header from "./modules/header/Header";
 import Routes from "./routes/Routes";
-import store from "./redux/store/store";
+import store from "./redux/store";
 
 const MainContainer = styled.div`
   display: flex;

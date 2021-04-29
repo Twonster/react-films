@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import { API_KEY } from '../../../constants/APIConfig'
-import { setFilmDataClear } from '../../../redux/store/actions/filmActions/mainFilmDataActions'
-import { GET_FILM_FULLDATA } from '../../../redux/store/actions/sagaActionTypes'
+import { setFilmDataClear } from '../../../redux/actions/filmActions/mainFilmDataActions'
+import { GET_FILM_FULLDATA } from '../../../redux/actions/sagaActionTypes'
 
 import FilmContent from './contant/FilmContent'
 import PosterSection from './poster/PosterSection'
