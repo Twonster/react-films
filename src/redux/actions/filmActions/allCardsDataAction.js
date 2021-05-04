@@ -1,8 +1,8 @@
-import { requestTypes } from "../actionTypes"
+import { FILM_CARD_ACTION_TYPES } from "../actionTypes"
 
-const { SET_CARDS_DATA, SET_CARDS_LOADING, SET_REQUEST_ERROR, CLEAR_CARDS_DATA } = requestTypes
+const { SET_FILMS_CARDS, CLEAR_FILM_CARDS, SET_CARDS_DATA_LOADING, SET_CARDS_DATA_ERROR } = FILM_CARD_ACTION_TYPES
 
-export const setDataSuccess = (payload, query) => ({type: SET_CARDS_DATA, payload, query}) 
-export const setDataLoading = (loading) => ({type: SET_CARDS_LOADING, loading}) 
-export const setDataError = (error) => ({type: SET_REQUEST_ERROR, error}) 
-export const setDataClear = (payload) => ({type: CLEAR_CARDS_DATA, payload}) 
+export const setFilmCards = (payload) => ({ type: SET_FILMS_CARDS, payload }) 
+export const clearFilmCards = (payload) => ({ type: CLEAR_FILM_CARDS, payload }) 
+export const setCardsLoading = (loading) => ({type: SET_CARDS_DATA_LOADING, loading}) 
+export const setCardsError = (error) => ({type: SET_CARDS_DATA_ERROR, error}) 

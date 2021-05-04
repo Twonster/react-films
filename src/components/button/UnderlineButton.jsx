@@ -17,17 +17,29 @@ const Button = styled.div`
     &::after {
         content: '';
         transition: .3s;
-        width: ${props => props.active ? '70%' : '0%'};
+        width: ${props => props.active ? '100%' : '0%'};
         height: 3px;
         position: absolute;
         background-color: #404040;
         bottom: 10px;
         border-radius: 5px;
     }
+    & span {
+        transition: .3s;
+        font-size: 12px;
+        opacity: .7;
+        margin: 0 0 0 10px;
+        background: ${ props => props.active ? '#000' : 'transparent' };
+        padding: ${ props => props.active ? '2px 6px' : 0 };
+        border-radius: 10px;
+        color: ${props => props.active ? '#fff' : '#000'};
+    }
 `
-const UnderlineButton = ({ active, action, text }) => {
+const UnderlineButton = ({ active, action, text, resultsCount }) => {
     return (
-        <Button active={active} onClick={action}>{text}</Button>
+        <Button active={active} onClick={action}>{text}
+            <span>{resultsCount}</span>
+        </Button>
     )
 }
 

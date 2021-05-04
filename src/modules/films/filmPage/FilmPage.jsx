@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 `
 const FilmPage = (props) => {
     const dispatcher = useDispatch()
-
+    
     useEffect(() => {
         dispatcher({
             type: GET_FILM_FULLDATA,

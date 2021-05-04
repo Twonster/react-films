@@ -26,7 +26,6 @@ const Container = styled.div`
 const Text = styled.p`
     padding: 5px 0 5px 20px;
     margin: 0;
-    width: 100%;
 `
 const ListItem = ({ id, filmName, history, hiding }) => {
     return (

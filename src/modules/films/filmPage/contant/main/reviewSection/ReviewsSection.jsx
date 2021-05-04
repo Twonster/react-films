@@ -83,19 +83,23 @@ const ReviewsSection = (props) => {
     const postsList = spawnCards()
     return (
         <>
-            { reviews.data.results
+            {reviews.data.results
                 ?   <Container>
                         <div className="pagination">
                             <div className="links-container">
                                 <div className="social-tittle">Social</div>
-                                <UnderlineButton active={currentLink[0]} action={() => swapLinks([true, false])} text="Reviews" />
+                                <UnderlineButton resultsCount={postsList.length} active={currentLink[0]} action={() => swapLinks([true, false])} text="Reviews" />
                                 <UnderlineButton active={currentLink[1]} action={() => swapLinks([false, true])} text="Discussions" />
                             </div>
-                            <div className="button-container">
-                                <button className="page-button" onClick={() => swapPosts(currentPost - 1)}>{'< prev'}</button>
-                                <span className="page-number">{currentPost + 1}</span>
-                                <button className="page-button" onClick={() => swapPosts(currentPost + 1)}>{'next >'}</button>
-                            </div>
+                            {postsList.length 
+                            ?
+                                <div className="button-container">
+                                    <button className="page-button" onClick={() => swapPosts(currentPost - 1)}>{'< prev'}</button>
+                                    <span className="page-number">{currentPost + 1}</span>
+                                    <button className="page-button" onClick={() => swapPosts(currentPost + 1)}>{'next >'}</button>
+                                </div>
+                            : ''    
+                            }
                         </div>
                         <CardWrapper>
                             {postsList[currentPost]}

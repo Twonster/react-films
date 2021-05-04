@@ -1,52 +1,33 @@
-import { FILM_DATA_REQUEST_TYPES } from '../actions/actionTypes'
+import { FILM_CARD_ACTION_TYPES } from '../actions/actionTypes'
 
 const initialState = {
-    response: {
-        movies_list: {
-            data: {},
-            loading: false,
-            error: false        
-        },
-    },
+    data: [],
+    loading: false,
+    error: false 
 }
 
 export default function filmsCardReducer(state = initialState, action) {
-    const {  } = FILM_DATA_REQUEST_TYPES
+    const { SET_FILMS_CARDS, CLEAR_FILM_CARDS, SET_CARDS_DATA_LOADING, SET_CARDS_DATA_ERROR } = FILM_CARD_ACTION_TYPES
 
     switch (action.type) {
-        case SET_FILM_DATA:
+        case SET_FILMS_CARDS:
             return {
-                response: {
-                    ...state.response,
-                    [action.pointer]: {
-                        ...state.response[action.pointer],
-                        data: action.payload
-                    }
-                }
+                ...state,
+                data: action.payload
             };
-        case CLEAR_FILM_DATA:
+        case CLEAR_FILM_CARDS:
             return {
-                response: initialState.response,
+                ...initialState,
             };
-        case SET_FILM_LOADING:
+        case SET_CARDS_DATA_LOADING:
             return {
-                response: {
-                    ...state.response,
-                    [action.pointer]: {
-                        ...state.response[action.pointer],
-                        loading: action.loading
-                    }
-                }
+                ...state,
+                loading: action.loading
             };
-        case SET_FILM_ERROR:
+        case SET_CARDS_DATA_ERROR:
             return {
-                response: {
-                    ...state.response,
-                    [action.pointer]: {
-                        ...state.response[action.pointer],
-                        error: action.error
-                    }
-                }
+                ...state,
+                error: action.error
             };
         default: return state
     }     

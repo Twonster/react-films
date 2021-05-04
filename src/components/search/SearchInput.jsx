@@ -36,18 +36,22 @@ const SearchInput = (props) => {
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
     useEffect( () => {
-          if (debouncedSearchTerm) {
+        if (debouncedSearchTerm) {
             const callApi = async ()  => {
-               await props.action(debouncedSearchTerm)
+                await props.action(debouncedSearchTerm)
             }
-            callApi()
-          }
+        callApi()
+        }
     }, [debouncedSearchTerm])
+
+    const changeHandler = (event) => {
+        setSearchTerm(event.target.value)
+    }
 
     return (
         <Wrapper>
             <Container>
-                <Input value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} />
+                <Input value={searchTerm} onKeyDown={props.enterAction} onChange={changeHandler} />
                 <div>
                     {props.status && <LoadingOutlined color="#c4c4c4" style={{ fontSize: 20 }} spin />}
                 </div>
