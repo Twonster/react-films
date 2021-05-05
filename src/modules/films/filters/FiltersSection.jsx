@@ -1,6 +1,8 @@
 import { Button } from 'antd'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+import ApplyFiltersButton from '../../../components/filter/ApplyFiltersButton'
 
 import FilterContainer from '../../../components/filter/FilterContainer'
 import FilterContent from '../../../components/filter/FilterContent'
@@ -31,7 +33,7 @@ const FiltersSection = () => {
         <Wrapper>
             <FilterContainer content={<SortContent />} type="SORT" toggleAction={toggle} showType={sortIsOpened} text="Sort" />
             <FilterContainer content={<FilterContent />} type="FILTERS" toggleAction={toggle} showType={filtersIsOpened} text="Filters" />
-            <Button block shape="round" type="primary" >Apply filters</Button>
+            <ApplyFiltersButton />
         </Wrapper>
     )
 }

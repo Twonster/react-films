@@ -1,16 +1,20 @@
+import { API_KEY } from '../../constants/APIConfig'
 import { FILTERS_DATA_ACTION_TYPES } from '../actions/actionTypes'
+const API_QUERY = 'https://api.themoviedb.org/3/discover/movie?api_key='
 
 const initialState = {
-    sort_value: '',
-    genres_value: '',
+    query: `${API_QUERY}${API_KEY}`,
+    sort_value: 'popularity.asc',
+    genres_value: [],
     release_range: {
         from: '',
         to: '',
     },
-    user_score_value: 0,
+    user_score_value: [],
     user_votes_value: 0,
     runtime_range: [0, 400],
-    keywords: {
+    keywords: [],
+    keywords_resp: {
         data: [],
         loading: false,
         error: false
@@ -19,6 +23,7 @@ const initialState = {
 
 export default function filtersReducer(state = initialState, action) {
     const { 
+        SET_QUERY_STRING,
         SET_SORT_VALUE,
         SET_GENRES_VALUE,
         SET_RELEASE_RANGE, 
@@ -26,15 +31,21 @@ export default function filtersReducer(state = initialState, action) {
         SET_USER_VOTES_VALUE,
         SET_RUNTIME_RANGE,
         SET_KEYWORDS_DATA,
+        SET_KEYWORDS,
         SET_KEYWORDS_LOADING,
         SET_KEYWORDS_ERROR
     } = FILTERS_DATA_ACTION_TYPES
 
     switch (action.type) {
+        case SET_QUERY_STRING:
+            return {
+                ...state,
+                query: `${API_QUERY}${API_KEY}&${action.query}`
+            }
         case SET_SORT_VALUE:
             return {
                 ...state,
-                genres_value: action.payload
+                sort_value: action.payload
             }
         case SET_GENRES_VALUE:
             return {
@@ -46,7 +57,7 @@ export default function filtersReducer(state = initialState, action) {
                 ...state,
                 release_range: {
                     ...state.release_range,
-                    [action.payload.pointer]: action.payload.value
+                    [action.pointer]: action.value
                 }
             }
         case SET_USER_SCORE_VALUE:
@@ -64,30 +75,35 @@ export default function filtersReducer(state = initialState, action) {
                 ...state,
                 runtime_range: action.payload
             }
+        case SET_KEYWORDS:
+            return {
+                ...state,
+                keywords: action.payload
+            }
         case SET_KEYWORDS_DATA:
             return {
                 ...state,
-                keywords: {
-                    ...state.keywords,
+                keywords_resp: {
+                    ...state.keywords_resp,
                     data: action.payload
                 }
             }
         case SET_KEYWORDS_LOADING:
             return {
                 ...state,
-                keywords: {
-                    ...state.keywords,
+                keywords_resp: {
+                    ...state.keywords_resp,
                     loading: action.loading
                 }
             }
         case SET_KEYWORDS_ERROR:
             return {
                 ...state,
-                keywords: {
-                    ...state.keywords,
+                keywords_resp: {
+                    ...state.keywords_resp,
                     error: action.error
                 }
             }
         default: return state  
     }
-} 
+}

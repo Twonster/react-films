@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import { Calendar, DatePicker, Input } from 'antd';
+import React from 'react'
+import { DatePicker } from 'antd';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { setReleaseValue } from '../../../redux/actions/filmActions/filtersDataActions';
 
-function onPanelChange(value, mode) {
-  console.log(value, mode);
-}
 const Wrapper = styled.div`
     margin: 0 0 10px 0;
     display: flex;
@@ -15,12 +14,17 @@ const Wrapper = styled.div`
     }
 `
 
-const PopUpCalendar = (props) => {
+const PopUpCalendar = ({ type, text }) => {
+    const dispatcer = useDispatch() 
+
+    const onPanelChange = (mode, value) => {
+        dispatcer(setReleaseValue(value, type))
+    }
 
     return (
         <Wrapper>
-            <span className="text">{props.text}</span>   
-            <DatePicker style={{ width: '70%' }}/>
+            <span className="text">{text}</span>   
+            <DatePicker onChange={onPanelChange} style={{ width: '70%' }}/>
         </Wrapper>
     )
 }
