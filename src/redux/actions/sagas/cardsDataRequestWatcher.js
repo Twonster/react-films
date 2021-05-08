@@ -9,7 +9,7 @@ function* cardsDataRequestWorker({ url }) {
     yield put(setCardsLoading(true))
     try {
         const resp = yield call(() => callApi(url))
-        yield put(setFilmCards(resp.results))
+        yield put(setFilmCards(resp))
     } catch (error) {
         yield put(setCardsError(error))
     } finally {

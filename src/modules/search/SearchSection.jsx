@@ -8,6 +8,7 @@ import { GET_FILMS_CARDS, GET_SEARCH_RESULTS } from '../../redux/actions/sagaAct
 import ListItem from '../../components/search/ListItem'
 import SearchInput from '../../components/search/SearchInput'
 import { setSearchInitialValue } from '../../redux/actions/searchActions/searchActions'
+import { setCurrentPage, setQueryString } from '../../redux/actions/filmActions/allCardsDataAction'
 
 const Wrapper = styled.div`
     width: 100%;
@@ -31,6 +32,8 @@ const SearchSection = ({ history, hiding }) => {
 
     const setFilmCardsData = (event) => {
         if (event.code === 'Enter') {
+            dispatcher(setQueryString(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${event.target.value}`))
+            dispatcher(setCurrentPage(1))
             dispatcher({
                 type: GET_FILMS_CARDS,
                 url: `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${event.target.value}`

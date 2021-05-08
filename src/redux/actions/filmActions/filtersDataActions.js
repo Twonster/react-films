@@ -1,7 +1,6 @@
 import { FILTERS_DATA_ACTION_TYPES } from '../actionTypes'
 
 const { 
-    SET_QUERY_STRING,
     SET_SORT_VALUE,
     SET_GENRES_VALUE,
     SET_RELEASE_RANGE, 
@@ -14,7 +13,6 @@ const {
     SET_KEYWORDS_ERROR
 } = FILTERS_DATA_ACTION_TYPES
 
-export const setSortQuery = (query) => ({ type: SET_QUERY_STRING, query }) 
 export const setSortValue = (payload) => ({ type: SET_SORT_VALUE, payload }) 
 export const setGenresValue = (payload) => ({ type: SET_GENRES_VALUE, payload }) 
 export const setReleaseValue = (value, pointer) => ({ type: SET_RELEASE_RANGE, value, pointer }) 

@@ -41,11 +41,12 @@ const Persents = styled.text`
 `
 const Raiting = (props) => {
     const borderRefence = 2 * Math.PI * 20
-    const vote = props.votes ? Math.floor(props.votes * 10) : '...'
+    const vote = props.votes ? Math.floor(props.votes * 10) : 0
     
     const setProgress = (percent) => {
         return borderRefence - percent / 100 * borderRefence
     }
+
     return (
         <Wrapper position={props.position} scale={props.scale}>
             <Line className="outline" dasharray={borderRefence} dashoffset={setProgress(vote)} />

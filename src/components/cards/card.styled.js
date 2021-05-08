@@ -6,7 +6,20 @@ export const Wrapper = styled.div`
     display: inline-flex;
     width: 20%;
     flex-shrink: 0;
-    animation: ${showing} 1s linear;
+    animation: ${showing} .3s linear;
+
+    @media (max-width: 1050px) { 
+        width: 25%
+    }
+    @media (max-width: 920px) { 
+        width: 33%
+    }
+    @media (max-width: 550px) { 
+        width: 50%
+    }
+    @media (max-width: 425px) { 
+        width: 100%
+    }
 `
 export const Card = styled.div`
     margin: 5px;

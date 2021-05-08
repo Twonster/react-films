@@ -1,8 +1,9 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { setUserScoreValue, setUserVotesValue, setRuntimeRange } from '../../redux/actions/filmActions/filtersDataActions'
 import Slide from './filtersItems/Slider'
+
+
 const Wrapper = styled.div`
     border-top: 1px solid #0000001f;
 `

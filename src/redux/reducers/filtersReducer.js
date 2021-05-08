@@ -1,10 +1,7 @@
-import { API_KEY } from '../../constants/APIConfig'
 import { FILTERS_DATA_ACTION_TYPES } from '../actions/actionTypes'
-const API_QUERY = 'https://api.themoviedb.org/3/discover/movie?api_key='
 
 const initialState = {
-    query: `${API_QUERY}${API_KEY}`,
-    sort_value: 'popularity.asc',
+    sort_value: 'popularity.desc',
     genres_value: [],
     release_range: {
         from: '',
@@ -23,7 +20,6 @@ const initialState = {
 
 export default function filtersReducer(state = initialState, action) {
     const { 
-        SET_QUERY_STRING,
         SET_SORT_VALUE,
         SET_GENRES_VALUE,
         SET_RELEASE_RANGE, 
@@ -37,11 +33,6 @@ export default function filtersReducer(state = initialState, action) {
     } = FILTERS_DATA_ACTION_TYPES
 
     switch (action.type) {
-        case SET_QUERY_STRING:
-            return {
-                ...state,
-                query: `${API_QUERY}${API_KEY}&${action.query}`
-            }
         case SET_SORT_VALUE:
             return {
                 ...state,

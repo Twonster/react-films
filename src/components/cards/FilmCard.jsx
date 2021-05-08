@@ -7,6 +7,7 @@ import nofound from '../../images/no-found-film.svg'
 
 import { Wrapper, Card, Description, Tittle, SecondHeading } from './card.styled'
 import styled from 'styled-components'
+
 const NewCard = styled(Card)`
     display: flex;
     flex-direction: column;

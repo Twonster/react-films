@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSortQuery, setSortValue } from '../../redux/actions/filmActions/filtersDataActions';
+import { setSortValue } from '../../redux/actions/filmActions/filtersDataActions';
 
 const Wrapper = styled.div`
     border-top: 1px solid #0000001f;
@@ -25,17 +25,16 @@ const SortContent = (props) => {
 
     const handleChange = (value) => {
         dispatcher(setSortValue(value))
-        dispatcher(setSortQuery(`&sort_by${sort_value}`))
     }
     
     return (
         <Wrapper>
             <p className="tittle">Sort Results By </p>
             <SSelect defaultValue={sort_value} allowClear onChange={handleChange}>
-                <Option value="popularity.asc" >Popularity Ascending</Option>
                 <Option value="popularity.desc" >Popularity Descending</Option>
-                <Option value="vote_average.asc" >Rating Ascending</Option>
+                <Option value="popularity.asc" >Popularity Ascending</Option>
                 <Option value="vote_average.desc" >Rating Descending</Option>
+                <Option value="vote_average.asc" >Rating Ascending</Option>
                 <Option value="release_date.asc" >Release Date Ascending</Option>
                 <Option value="release_date.desc" >Release Date Descending</Option>
                 <Option value="original_title.asc" >Title (A-Z)</Option>

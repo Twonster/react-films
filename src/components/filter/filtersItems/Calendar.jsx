@@ -24,7 +24,7 @@ const PopUpCalendar = ({ type, text }) => {
     return (
         <Wrapper>
             <span className="text">{text}</span>   
-            <DatePicker onChange={onPanelChange} style={{ width: '70%' }}/>
+            <DatePicker onChange={onPanelChange} style={{ width: '70%' }} format="YYYY-MM-DD"/>
         </Wrapper>
     )
 }
