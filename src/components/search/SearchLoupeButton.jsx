@@ -4,10 +4,10 @@ import styled from 'styled-components'
 import loupe from '../../images/icons/loupe-ico.png'
 
 const Button = styled.button`
-    background-image: ${props => props.toggler ? 'none' : `url(${loupe})`  };
+    background-image: ${props => props.toggler ? 'none' : `url(${loupe})` };
     background-color: ${props => props.toggler ? '#fff' : 'transparent' };
+    background-size: ${props => props.toggler ? '0px' : `15px` };
     background-position: center;
-    background-size: 15px;
     border: none;
     background-repeat: no-repeat;
     transition: .2s;

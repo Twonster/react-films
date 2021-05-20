@@ -36,7 +36,7 @@ const PosterContent = styled.div`
     display: flex;
     align-items: center;
     max-width: 1200px;
-    padding: 50px 0;
+    padding: 50px 15px;
     animation: ${showing} 1s linear ;
 
     & .poster {
@@ -69,7 +69,7 @@ const PosterSection = (props) => {
                     <div className="description-wrapper">
                         <FilmTittle name={movie.data?.original_title} year={movie.data?.release_date} color="#fff" />
                         <TittleDescription />
-                        <ActionSection votes={movie.data?.vote_average} />
+                        <ActionSection filmId={movie.data.id} votes={movie.data?.vote_average} />
                         <FilmDescription overview={movie.data?.overview} tagline={movie.data?.tagline} />
                         <CrewSection />
                     </div>

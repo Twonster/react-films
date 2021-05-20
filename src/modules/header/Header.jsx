@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
@@ -50,6 +50,7 @@ const Container = styled.div`
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+    padding: 0 15px;
 `
 const LinksWrapper = styled.div`
     display: flex;
@@ -60,7 +61,6 @@ const Header = ({ history }) => {
     const dispatcher = useDispatch()
     const { isOpened } = useSelector(({ searchDataReducer: { response } }) => response)
 
-    // const  [cearchVisible, setShowVisible] = useState(false)
     const searchHandler = () => {
         dispatcher(setSearchShowingStatus(!isOpened))
     }
@@ -78,7 +78,7 @@ const Header = ({ history }) => {
                         <LinksWrapper>
                             <Link text="favorites" href="/favorites"/>
                             <Link text="films" href="/films"/>
-                            <Link text="home" href="/home"/>
+                            <Link text="auth" href="/auth"/>
                             <SearchLoupeButton 
                                 type={isOpened}
                                 action={searchHandler}

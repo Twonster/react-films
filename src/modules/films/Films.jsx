@@ -1,8 +1,9 @@
 import { Pagination } from 'antd'
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import styled from 'styled-components'
 import FilmCard from '../../components/cards/FilmCard'
+import PathTittle from '../../components/path_tittle/PathTittle'
 import Preloader from '../../components/preloader/Preloader'
 import { setCurrentPage } from '../../redux/actions/filmActions/allCardsDataAction'
 import { GET_FILMS_CARDS } from '../../redux/actions/sagaActionTypes'
@@ -11,12 +12,16 @@ import FiltersSection from './filters/FiltersSection'
 const Container = styled.div`
     overflow-y: scroll;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 `
 const Wrapper = styled.div`
     display: flex;
     height: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 15px;
+    width: 100%;
 `
 const FilmsSection = styled.div`
     display: flex;
@@ -24,6 +29,7 @@ const FilmsSection = styled.div`
     justify-content: center;
     width: 100%;
     height: fit-content;
+    flex-direction: column;
 `
 const FilmContainer = styled.div`
     display: flex;
@@ -33,6 +39,7 @@ const FilmContainer = styled.div`
 const SPagination = styled(Pagination)`
     justify-self: center;
     margin: 20px 0;
+    align-self: center;
 `
 const Films = (props) => {
     const { data, error, loading, results_count, query, current_page } = useSelector(({ filmsCardReducer }) => filmsCardReducer)
@@ -50,6 +57,7 @@ const Films = (props) => {
     const spawn = () => data.map(item => <FilmCard key={item.id} {...item} /> )
     return (
         <Container>
+            <PathTittle text="Films"/>
             <Wrapper>
                 <FiltersSection />
                 {loading

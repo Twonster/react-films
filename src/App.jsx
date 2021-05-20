@@ -1,10 +1,11 @@
 import { Provider } from "react-redux";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
 
 import Header from "./modules/header/Header";
 import Routes from "./routes/Routes";
 import store from "./redux/store";
+import PrivatRouter from "./routes/PrivatRoute";
 
 const MainContainer = styled.div`
   display: flex;
@@ -23,7 +24,7 @@ function App() {
       <Provider store={store}>
         <MainContainer>
           <ContentWrapper>
-          <Route path="/" render={(props) => <Header {...props} />} />
+            <PrivatRouter path="/" component={Header} />
             <Routes />
           </ContentWrapper>
         </MainContainer>

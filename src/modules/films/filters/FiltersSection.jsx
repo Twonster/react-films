@@ -1,6 +1,4 @@
-import { Button } from 'antd'
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import ApplyFiltersButton from '../../../components/filter/ApplyFiltersButton'
 
@@ -11,6 +9,7 @@ import SortContent from '../../../components/filter/SortContent'
 
 const Wrapper = styled.div`
     width: 300px;
+    margin: 0 15px 0 0;
 `
 
 

@@ -47,7 +47,14 @@ const Card = (props) => {
 
 const CrewSection = (props) => {
     const { peoples } = useSelector(({ filmDataReducer: { response } }) => response)
-    const crewList = () => (peoples.data.crew) ? peoples.data.crew.slice(0, 10).map(item => <Card key={item.id} link={`/${item.id}`} name={item.name} job={item.known_for_department} />) : '...loading'
+    const crewList = () => {
+        return (peoples.data.crew) 
+        ? peoples.data.crew
+            .slice(0, 10)
+            .map(item => <Card key={`${item.id}_${item.department}`} link={`/${item.id}`} name={item.name} job={item.department} />) 
+        : '...loading'
+        
+    }
 
     return (
         <Wrapper>
