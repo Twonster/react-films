@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Form, Input, Button, Checkbox } from 'antd';
+
+import { LoadingOutlined } from '@ant-design/icons'
+import { Form, Input, Button, Checkbox, Alert, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { AUTORISE_USER } from '../../redux/actions/sagaActionTypes';
 
@@ -9,6 +11,7 @@ const Container = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+    max-width: 300px;
 `
 const Wrapper = styled.div`
     display: flex;
@@ -17,9 +20,10 @@ const Wrapper = styled.div`
     margin: 0 auto;
     padding: 0 15px;
 `
+const antIcon = <LoadingOutlined style={{ fontSize: 50, height: '100%', }} spin />;
 
-const SignInForm = ({ layout, tailLayout, message }) => {
-    // const { message, loading, error } = useSelector(({ userAuthDataReducer }) =>  userAuthDataReducer )
+const SignInForm = ({ layout, tailLayout, push }) => {
+    const { message, loading, error, status, isAutorised } = useSelector(({ userAuthDataReducer }) =>  userAuthDataReducer )
     
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -38,10 +42,16 @@ const SignInForm = ({ layout, tailLayout, message }) => {
                 user_password: values.password,
             })
         }
-        dispatcher({ type: AUTORISE_USER, url: 'http://localhost:8080/api/auth/user-auth', options: requestOptions })
+        await dispatcher({ type: AUTORISE_USER, url: 'http://localhost:8080/api/auth/user-auth', options: requestOptions })
+
     }
 
-    
+    useEffect(() => {
+        if (isAutorised) {
+            setTimeout(() => push('/films'), 1000)
+        }
+    }, [isAutorised])
+
     return (
         <Container>
             <Wrapper>
@@ -86,6 +96,20 @@ const SignInForm = ({ layout, tailLayout, message }) => {
                     </Form.Item>
                 </Form>
             </Wrapper>
+                {loading 
+                ?  <Spin indicator={antIcon} />
+                :  error 
+                    ?   <Alert
+                            message={`Error status ${status}`}
+                            description={message}
+                            type="error"
+                        />
+                    :   message.length !== 0   
+                        && <Alert
+                            message="Success"
+                            description={message}
+                            type="success"
+                        />}
         </Container>
     )
 }

@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Form, Input, Button, Checkbox, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { CREATE_USER_DATA } from '../../redux/actions/sagaActionTypes';
+
+import { LoadingOutlined } from '@ant-design/icons'
+import { Form, Input, Button, Alert, Spin } from 'antd';
 
 const Container = styled.div`
     overflow-y: scroll;
     height: 100%;
     display: flex;
     flex-direction: column;
+    max-width: 300px;
 `
 const Wrapper = styled.div`
     display: flex;
@@ -17,7 +21,11 @@ const Wrapper = styled.div`
     margin: 0 auto;
     padding: 0 15px;
 `
-const SignUpForm = ({ layout, tailLayout }) => {    
+const antIcon = <LoadingOutlined style={{ fontSize: 50, height: '100%', }} spin />;
+
+const SignUpForm = ({ layout, tailLayout, regDone }) => {    
+    const { message, loading, error, status, isRegistred } = useSelector(({ userRegistrationDataReducer }) => userRegistrationDataReducer)
+
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     }
@@ -41,6 +49,12 @@ const SignUpForm = ({ layout, tailLayout }) => {
         dispatcher({ type: CREATE_USER_DATA, url: 'http://localhost:8080/api/auth/registration', options: requestOptions })
     }
     
+    useEffect(() => {
+        if (isRegistred) {
+            setTimeout(() => regDone(), 1500)
+        }
+    }, [isRegistred])
+
     return (
         <Container>
             <Wrapper>
@@ -117,6 +131,20 @@ const SignUpForm = ({ layout, tailLayout }) => {
                     </Form.Item>
                 </Form>
             </Wrapper>
+            {loading 
+                ?  <Spin indicator={antIcon} />
+                :  error 
+                    ?   <Alert
+                            message={`Error status ${status}`}
+                            description={message}
+                            type="error"
+                        />
+                    :   message.length !== 0   
+                        && <Alert
+                            message="Success"
+                            description={message}
+                            type="success"
+                        />}
         </Container>
     )
 }

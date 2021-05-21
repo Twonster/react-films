@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux';
 
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons'
-import { Alert } from 'antd';
 import { Button } from 'antd';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 
-import logo from '../../images/logo.svg'
 import { showing } from '../../animations.js';
-import { clearRegData } from '../../redux/actions/authActions/userRegAction';
+import { useDispatch } from 'react-redux';
+import { setUserIsAutorised } from '../../redux/actions/authActions/userAuthActions';
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 500px;
-    justify-content: center;
+    justify-content: flex-start;
+    margin: 50px 0 0 0;
 `
 const Wrapper = styled.div`
     display: flex;
@@ -26,7 +23,6 @@ const Wrapper = styled.div`
     margin: 0 auto;
     padding: 0 15px;
     flex-direction: column;
-    animation: ${showing} 0.5s linear;
 
 `
 const ButtonContainer = styled.div`
@@ -56,7 +52,6 @@ const HelloText = styled.p`
     }
 `
 
-const antIcon = <LoadingOutlined style={{ fontSize: 50, height: '100%', }} spin />;
 const layout = {
     labelCol: {
         span: 8,
@@ -72,18 +67,19 @@ const tailLayout = {
     },
 };
 
-const AuthScreen = (props) => {
-    const { message, loading, error, status } = useSelector(({ userAuthDataReducer }) =>  userAuthDataReducer )
-    const [isRegistration, setisRegistration] = useState(false);
+const AuthScreen = ({ history }) => {
+    const [isRegistration, setisRegistration] = useState(false)
     const toggleText = ['don\'t have an account?', 'log in']
+    const dispatcher = useDispatch()
     
+    useEffect(() => {
+        const check = localStorage.getItem('token')
+        dispatcher(setUserIsAutorised(!!check))
+    },[])
     return (
         <Container>
-            <HelloText>WELCOME TO DVABOBA FILMS <img src={logo} alt="" /></HelloText>
             {
-                loading 
-                ? <Spin indicator={antIcon} /> 
-                : <Wrapper>
+                <Wrapper>
                     {
                     !isRegistration ? <ScreenText>Please login</ScreenText> : <ScreenText>Please sign up</ScreenText>
                     }
@@ -91,24 +87,10 @@ const AuthScreen = (props) => {
                         <Button type="link" onClick={() => setisRegistration(!isRegistration)}>{!isRegistration ? toggleText[0] : toggleText[1]}</Button>
                     </ButtonContainer>
                     {!isRegistration
-                        ? <SignInForm layout={layout} tailLayout={tailLayout} message={message}/>
-                        : <SignUpForm layout={layout} tailLayout={tailLayout}/>
+                        ? <SignInForm layout={layout} tailLayout={tailLayout} {...history}/>
+                        : <SignUpForm layout={layout} tailLayout={tailLayout} regDone={() => setisRegistration(false)} {...history}/>
                     }
-                    {
-                        error 
-                        ?   <Alert
-                                message="Error Text"
-                                description={message}
-                                type="error"
-                            />
-                        :  message.length !== 0   
-                            && <Alert
-                                message="Success"
-                                description={message}
-                                type="success"
-                            />  
-                    }
-                  </Wrapper>
+                </Wrapper>
             }
         </Container>
     )

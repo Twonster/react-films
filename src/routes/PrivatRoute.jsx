@@ -1,11 +1,12 @@
 import React from 'react'
+// import { useSelector } from 'react-redux'
 import { Redirect, Route } from 'react-router'
 
 
 const PrivatRouter = ({component: RouteComponent, ...rest}) => {
+    // const { isAutorised } = useSelector(({ userAuthDataReducer }) => userAuthDataReducer)
     const isAuth = localStorage.getItem('token')
-    console.log('token', isAuth)
-    console.log('data', RouteComponent)
+
     return (
         <Route 
             {...rest}

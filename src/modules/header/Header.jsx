@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
@@ -58,34 +58,40 @@ const LinksWrapper = styled.div`
 `
 
 const Header = ({ history }) => {
-    const dispatcher = useDispatch()
-    const { isOpened } = useSelector(({ searchDataReducer: { response } }) => response)
 
+    const dispatcher = useDispatch()
+    const { response: { isOpened }, userAuthDataReducer: { isAutorised } } = useSelector(({ searchDataReducer: { response }, userAuthDataReducer }) => ({ response, userAuthDataReducer }))
+    // const { isOpened, isAutorised } = useSelector(({ searchDataReducer: { response }, userAuthDataReducer }) => ({ response, userAuthDataReducer }))
+    console.log()
     const searchHandler = () => {
         dispatcher(setSearchShowingStatus(!isOpened))
     }
 
     return (
         <>
+            
             <Wrapper>
-                <Container>
-                    <NavLink to="/" className="logo-wrapper">
-                        <img className="logo" src={logo} alt=""/>
-                        DVABOBA   
-                    </NavLink>
+                { 
+                isAutorised &&
+                    <Container>
+                        <NavLink to="/" className="logo-wrapper">
+                            <img className="logo" src={logo} alt=""/>
+                            DVABOBA   
+                        </NavLink>
 
-                    <div className="right-side">
-                        <LinksWrapper>
-                            <Link text="favorites" href="/favorites"/>
-                            <Link text="films" href="/films"/>
-                            <Link text="auth" href="/auth"/>
-                            <SearchLoupeButton 
-                                type={isOpened}
-                                action={searchHandler}
-                            />
-                        </LinksWrapper>
-                    </div>
-                </Container>
+                        <div className="right-side">
+                            <LinksWrapper>
+                                <Link text="favorites" href="/favorites"/>
+                                <Link text="films" href="/films"/>
+                                <Link text="auth" href="/auth"/>
+                                <SearchLoupeButton 
+                                    type={isOpened}
+                                    action={searchHandler}
+                                />
+                            </LinksWrapper>
+                        </div>
+                    </Container>
+                }
             </Wrapper>
             {isOpened && <SearchSection hiding={searchHandler} history={history} />}
         </>

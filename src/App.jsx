@@ -13,18 +13,18 @@ const MainContainer = styled.div`
   height: 100vh;
   overflow: hidden;
 `
-
 const ContentWrapper = styled.div`
   height: calc(100% - 70px);
 `
 
 function App() {
+  
   return (
     <BrowserRouter>
       <Provider store={store}>
         <MainContainer>
           <ContentWrapper>
-            <PrivatRouter path="/" component={Header} />
+            {/* <PrivatRouter path="/" component={Header} /> */}
             <Routes />
           </ContentWrapper>
         </MainContainer>
