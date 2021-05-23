@@ -16,7 +16,7 @@ const Wrapper = styled.div`
     }
 `
 const Container = styled.div`
-    margin: 0 15px;
+    margin: 0 auto;
     max-width: 1200px;
     background-image: url(${loupe});
     background-position: left;

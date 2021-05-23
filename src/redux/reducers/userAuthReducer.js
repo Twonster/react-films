@@ -1,13 +1,21 @@
 import { USER_AUTH_ACTION_TYPES } from '../actions/actionTypes'
 
-const { SET_USER_AUTH_MESSAGE, SET_USER_IS_AUTORISED, SET_USER_AUTH_LOADING, SET_USER_AUTH_ERROR, SET_USER_AUTH_STATUS } = USER_AUTH_ACTION_TYPES
+const { 
+    SET_USER_AUTH_MESSAGE,
+    SET_USER_IS_AUTORISED, 
+    SET_USER_AUTH_LOADING, 
+    SET_USER_AUTH_ERROR, 
+    SET_USER_AUTH_STATUS, 
+    SET_USER_DATA 
+} = USER_AUTH_ACTION_TYPES
 
 const initialState = {
     isAutorised: false,
     message: '',
     status: '',
     loading: false,
-    error: false
+    error: false,
+    user_data: {}
 }
 
 export default function userRegistrationDataReducer(state = initialState, action) {
@@ -37,6 +45,11 @@ export default function userRegistrationDataReducer(state = initialState, action
             return {
                 ...state,
                 isAutorised: action.payload
+            };
+        case SET_USER_DATA:
+            return {
+                ...state,
+                user_data: action.payload
             };
         default: return state
     }     

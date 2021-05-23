@@ -1,4 +1,5 @@
 import { Pagination } from 'antd'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components'
@@ -6,7 +7,7 @@ import FilmCard from '../../components/cards/FilmCard'
 import PathTittle from '../../components/path_tittle/PathTittle'
 import Preloader from '../../components/preloader/Preloader'
 import { setCurrentPage } from '../../redux/actions/filmActions/allCardsDataAction'
-import { GET_FILMS_CARDS } from '../../redux/actions/sagaActionTypes'
+import { CHECK_USER_DATA, GET_FILMS_CARDS } from '../../redux/actions/sagaActionTypes'
 import FiltersSection from './filters/FiltersSection'
 
 const Container = styled.div`
@@ -42,15 +43,35 @@ const SPagination = styled(Pagination)`
     align-self: center;
 `
 const Films = (props) => {
-    const { data, error, loading, results_count, query, current_page } = useSelector(({ filmsCardReducer }) => filmsCardReducer)
+    const { filmsCardReducer, userAuthDataReducer } = useSelector(({ filmsCardReducer, userAuthDataReducer}) => ({ filmsCardReducer, userAuthDataReducer }))
+    const { data, error, loading, results_count, query, current_page } = filmsCardReducer
+    const { user_data, loading: fav_loading } = userAuthDataReducer
+
     const dispatcher = useDispatch()
 
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'Autorisation': localStorage.getItem('token')
+        }
+    }
+    
+    useEffect(() => {
+        dispatcher({
+            type: CHECK_USER_DATA,
+            url: `http://localhost:8080/api/auth/check`,
+            options
+        })
+    }, [])
+    
     const paginationHandler = (query, page) => {
         dispatcher(setCurrentPage(page))
         dispatcher({
             type: GET_FILMS_CARDS,
             url: `${query}&page=${page}`
         })
+        
         console.log(query, page)
     }
 

@@ -81,9 +81,9 @@ const Header = ({ history }) => {
 
                         <div className="right-side">
                             <LinksWrapper>
-                                <Link text="favorites" href="/favorites"/>
+                                <Link text="home" href="/home"/>
                                 <Link text="films" href="/films"/>
-                                <Link text="auth" href="/auth"/>
+                                {/* <Link text="home" href="/home"/> */}
                                 <SearchLoupeButton 
                                     type={isOpened}
                                     action={searchHandler}

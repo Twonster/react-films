@@ -17,7 +17,7 @@ const Wrapper = styled.div`
     padding: 0 15px;
 `
 
-const Favorites = (props) => {
+const Home = (props) => {
     
     return (
         <Container>
@@ -29,4 +29,4 @@ const Favorites = (props) => {
     )
 }
 
-export default Favorites
+export default Home
