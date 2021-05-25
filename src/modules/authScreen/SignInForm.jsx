@@ -48,7 +48,7 @@ const SignInForm = ({ layout, tailLayout, push }) => {
 
     useEffect(() => {
         if (isAutorised) {
-            setTimeout(() => push('/films'), 1000)
+            setTimeout(() => push('/react-films/films'), 1000)
         }
     }, [isAutorised])
 

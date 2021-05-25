@@ -22,12 +22,12 @@ const Routes = (props) => {
 
     return (
         <>
-           {isAutorised && <PrivatRouter path="/" component={Header} />}
+           {isAutorised && <PrivatRouter path="/react-films/" component={Header} />}
             <Switch>
-                <Route exact path="/auth" render={(props) => <AuthScreen {...props} />} />
-                <PrivatRouter exact path="/films" component={Films} />
-                <PrivatRouter exact path="/home" component={Home} />
-                <PrivatRouter exact path="/films/film-id/:id" component={FilmPage} />            
+                <Route exact path="/react-films/auth" render={(props) => <AuthScreen {...props} />} />
+                <PrivatRouter exact path="/react-films/films" component={Films} />
+                <PrivatRouter exact path="/react-films/home" component={Home} />
+                <PrivatRouter exact path="/react-films/films/film-id/:id" component={FilmPage} />            
             </Switch>
         </>
     )

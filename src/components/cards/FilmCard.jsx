@@ -28,7 +28,7 @@ const FilmCard = (props) => {
             <NewCard>
                 <Image image={ props.poster_path }/>
                 <Description>
-                    <Tittle to={`/films/film-id/${props.id}`}>{props.title}</Tittle>
+                    <Tittle to={`/react-films/films/film-id/${props.id}`}>{props.title}</Tittle>
                     <SecondHeading>{props.release_date}</SecondHeading>
                     <Raiting position="absolute" votes={props.vote_average} />
                 </Description>

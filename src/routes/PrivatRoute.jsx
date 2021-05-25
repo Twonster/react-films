@@ -14,7 +14,7 @@ const PrivatRouter = ({component: RouteComponent, ...rest}) => {
                 return (     
                     isAuth 
                     ? <RouteComponent {...props} {...rest} />
-                    : <Redirect to="/auth" />
+                    : <Redirect to="/react-films/auth" />
                 )
             } }
         />

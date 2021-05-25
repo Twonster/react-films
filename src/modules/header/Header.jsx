@@ -74,15 +74,15 @@ const Header = ({ history }) => {
                 { 
                 isAutorised &&
                     <Container>
-                        <NavLink to="/" className="logo-wrapper">
+                        <NavLink to="/react-films" className="logo-wrapper">
                             <img className="logo" src={logo} alt=""/>
                             DVABOBA   
                         </NavLink>
 
                         <div className="right-side">
                             <LinksWrapper>
-                                <Link text="home" href="/home"/>
-                                <Link text="films" href="/films"/>
+                                <Link text="home" href="/react-films/home"/>
+                                <Link text="films" href="/react-films/films"/>
                                 {/* <Link text="home" href="/home"/> */}
                                 <SearchLoupeButton 
                                     type={isOpened}
