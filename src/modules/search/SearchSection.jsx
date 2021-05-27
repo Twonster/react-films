@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { API_KEY } from '../../constants/APIConfig'
-import { GET_FILMS_CARDS, GET_SEARCH_RESULTS } from '../../redux/actions/sagaActionTypes'
 
+import { GET_FILMS_CARDS, GET_SEARCH_RESULTS } from '../../redux/actions/sagaActionTypes'
 import ListItem from '../../components/search/ListItem'
 import SearchInput from '../../components/search/SearchInput'
 import { setSearchInitialValue } from '../../redux/actions/searchActions/searchActions'
@@ -19,16 +19,15 @@ const Wrapper = styled.div`
 `
 
 const SearchSection = ({ history, hiding }) => {
-    const { data, loading, initialValue } = useSelector(({ searchDataReducer: { response } }) => response)
-
     const dispatcher = useDispatch()
+    const { data, loading, initialValue } = useSelector(({ searchDataReducer: { response } }) => response)
 
     useEffect(() => {
         dispatcher({
             type: GET_SEARCH_RESULTS,
             url: `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${initialValue}`
         })
-    }, [initialValue])
+    }, [dispatcher, initialValue])
 
     const setFilmCardsData = (event) => {
         if (event.code === 'Enter') {
@@ -38,6 +37,7 @@ const SearchSection = ({ history, hiding }) => {
                 type: GET_FILMS_CARDS,
                 url: `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${event.target.value}`
             })
+            history.push('/react-films/films')
             hiding()
         }
     }

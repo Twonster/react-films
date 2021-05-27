@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux';
 
 import { Button } from 'antd';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
-
-import { showing } from '../../animations.js';
-import { useDispatch } from 'react-redux';
 import { setUserIsAutorised } from '../../redux/actions/authActions/userAuthActions';
 
 const Container = styled.div`
@@ -36,21 +34,6 @@ const ScreenText = styled.p`
     text-align: center;
     font-weight: 500;
 `
-const HelloText = styled.p`
-    background-color: #1890ff;
-    font-size: 30px;
-    color: #fff;
-    text-align: center;
-    font-weight: 700;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
-    animation: ${showing} 2s linear;
-
-    & img {
-        width: 60px;
-    }
-`
 
 const layout = {
     labelCol: {
@@ -59,13 +42,14 @@ const layout = {
     wrapperCol: {
         span: 16,
     },
-};
+}
+
 const tailLayout = {
     wrapperCol: {
       offset: 8,
       span: 16,
     },
-};
+}
 
 const AuthScreen = ({ history }) => {
     const [isRegistration, setisRegistration] = useState(false)
@@ -75,7 +59,7 @@ const AuthScreen = ({ history }) => {
     useEffect(() => {
         const check = localStorage.getItem('token')
         dispatcher(setUserIsAutorised(!!check))
-    },[])
+    },[dispatcher])
     return (
         <Container>
             {

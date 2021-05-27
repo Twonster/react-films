@@ -18,7 +18,7 @@ const initialState = {
     user_data: {}
 }
 
-export default function userRegistrationDataReducer(state = initialState, action) {
+export default function userAuthonDataReducer(state = initialState, action) {
     
     switch (action.type) {
         case SET_USER_AUTH_MESSAGE:

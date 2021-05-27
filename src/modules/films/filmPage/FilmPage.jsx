@@ -48,7 +48,7 @@ const FilmPage = (props) => {
         return () => {
             dispatcher(setFilmDataClear({}))
         }
-    }, [props.match.params.id])
+    }, [dispatcher, props.match.params.id])
 
     return ( 
         <Wrapper>

@@ -33,7 +33,7 @@ const ListItem = ({ id, filmName, history, hiding }) => {
             onClick={
                 () => {
                 hiding()
-                history.push(`/films/film-id/${id}`)
+                history.push(`/react-films/films/film-id/${id}`)
             }
         }>
             <Container>

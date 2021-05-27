@@ -17,16 +17,16 @@ const StyledTag = styled(Tag.CheckableTag)`
 `
 
 const GenresList = (props) => {
+    const dispatcher = useDispatch()
+    const activeTabs = useSelector(({ filtersReducer: { genres_value } }) => genres_value)
     
     const [genresFetchData, setGenresFetchData] = useState([])
     
     useEffect(async () => {
         const data = await callApi(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`)
         setGenresFetchData(data.genres)
-    }, [])
+    }, [dispatcher])
     
-    const dispatcher = useDispatch()
-    const activeTabs = useSelector(({ filtersReducer: { genres_value } }) => genres_value)
 
     const genresHandler = (id, checked) => {
         const nextSelectedTags = checked ? [...activeTabs, id] : activeTabs.filter(t => t !== id);

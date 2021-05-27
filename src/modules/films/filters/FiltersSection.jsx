@@ -25,6 +25,7 @@ const FiltersSection = () => {
             case 'SORT': 
                 setSortIsOpened(!sortIsOpened);
                     break;
+            default: return null
         }
     }
 

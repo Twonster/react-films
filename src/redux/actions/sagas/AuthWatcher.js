@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { callRegServer } from '../../api'
-import { setAuthError, setAuthLoading, setAuthMessage, setAuthStatus, setAuthToken, setUserData, setUserIsAutorised } from '../authActions/userAuthActions'
+import { setAuthError, setAuthLoading, setAuthMessage, setAuthStatus, setUserData, setUserIsAutorised } from '../authActions/userAuthActions'
 import { setIsRegistred, setRegError, setRegLoading, setRegMessage, setRegStatus } from '../authActions/userRegAction'
 import { AUTORISE_USER, CREATE_USER_DATA, CHECK_USER_DATA } from '../sagaActionTypes'
 

@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { setSearchShowingStatus } from '../../redux/actions/searchActions/searchActions'
-
 import Link from '../../components/link/Link'
 import SearchLoupeButton from '../../components/search/SearchLoupeButton'
 import logo from  '../../images/logo.svg'
@@ -61,15 +60,12 @@ const Header = ({ history }) => {
 
     const dispatcher = useDispatch()
     const { response: { isOpened }, userAuthDataReducer: { isAutorised } } = useSelector(({ searchDataReducer: { response }, userAuthDataReducer }) => ({ response, userAuthDataReducer }))
-    // const { isOpened, isAutorised } = useSelector(({ searchDataReducer: { response }, userAuthDataReducer }) => ({ response, userAuthDataReducer }))
-    console.log()
     const searchHandler = () => {
         dispatcher(setSearchShowingStatus(!isOpened))
     }
 
     return (
-        <>
-            
+        <>  
             <Wrapper>
                 { 
                 isAutorised &&
@@ -83,7 +79,6 @@ const Header = ({ history }) => {
                             <LinksWrapper>
                                 <Link text="home" href="/react-films/home"/>
                                 <Link text="films" href="/react-films/films"/>
-                                {/* <Link text="home" href="/home"/> */}
                                 <SearchLoupeButton 
                                     type={isOpened}
                                     action={searchHandler}

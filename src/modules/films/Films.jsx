@@ -43,9 +43,8 @@ const SPagination = styled(Pagination)`
     align-self: center;
 `
 const Films = (props) => {
-    const { filmsCardReducer, userAuthDataReducer } = useSelector(({ filmsCardReducer, userAuthDataReducer}) => ({ filmsCardReducer, userAuthDataReducer }))
-    const { data, error, loading, results_count, query, current_page } = filmsCardReducer
-    const { user_data, loading: fav_loading } = userAuthDataReducer
+    const { filmsCardReducer } = useSelector(({ filmsCardReducer, userAuthDataReducer}) => ({ filmsCardReducer, userAuthDataReducer }))
+    const { data, loading, results_count, query, current_page } = filmsCardReducer
 
     const dispatcher = useDispatch()
 
@@ -63,7 +62,7 @@ const Films = (props) => {
             url: `http://localhost:8080/api/auth/check`,
             options
         })
-    }, [])
+    }, [dispatcher])
     
     const paginationHandler = (query, page) => {
         dispatcher(setCurrentPage(page))

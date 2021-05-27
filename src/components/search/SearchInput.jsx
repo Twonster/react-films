@@ -32,7 +32,6 @@ const Input = styled.input`
 
 const SearchInput = (props) => {
     const [searchTerm, setSearchTerm] = useState('')
-
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
     useEffect( () => {

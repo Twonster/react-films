@@ -1,19 +1,20 @@
+import { API_KEY } from '../../../constants/APIConfig';
+
 import React, { useEffect, useState } from 'react';
 import { Select } from 'antd';
-
-import 'antd/dist/antd.css';
 import useDebounce from '../../customHooks/useDebounce';
 import { useDispatch, useSelector } from 'react-redux';
-import { API_KEY } from '../../../constants/APIConfig';
+
 import { GET_KEYWORDS_DATA } from '../../../redux/actions/sagaActionTypes';
 import { setKeywords } from '../../../redux/actions/filmActions/filtersDataActions';
+import 'antd/dist/antd.css';
 
 const { Option } = Select;
 
 
 const KeywordsSearch = (props) => {
     const [searchTerm, setSearchTerm] = useState('')
-    const { data, loading, error } = useSelector(({ filtersReducer: { keywords_resp } }) => keywords_resp)
+    const { data } = useSelector(({ filtersReducer: { keywords_resp } }) => keywords_resp)
     const dispatcher = useDispatch()
 
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
